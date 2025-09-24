@@ -1,74 +1,104 @@
 #include <iostream>
+
 using namespace std;
 
 struct item
 {
+  // Blueprint for item
   string type;
   string name;
-  int number;
+
 };
 
+void viewList(item i)
+{
+  // Printing out information about item
+  cout << i.name << " " << i.type << " ";
+};
+void menuText()
+{
+   // Menu text
+  cout << "Welcome" << endl;
+  cout << "press 1 to view inventory" << endl;
+  cout << "press 2 to add item"<< endl;
+  cout << "press 3 to delete item"<< endl;
+  cout << "press 4 to exit menu"<< endl;
 
+};
 
 
 int main() 
 {
-   item item1;
-  item1.name = " kniv \n";
-  item1.type = " (bestick) \n";
-  item1.number = 2;
-
-  item item2;
-  item2.name = " gaffel \n" ;
-  item2.type = " (bestick) \n";
-  item2.number = 1;
-
-  item item3;
-  item3.name = " potatis \n";
-  item3.type = " (mat) \n";
-  item3.number =3;
-
-  int itemNumber;
-
-
-
+  menuText();
+  bool menu = true;
+  int menuOptions;
+  int listNr;
+  int count;
+  
+  cin >> listNr;
+  
   int length = 10;
-  int* arr2 = new int[9]{};
-  delete[] arr2;
-
-
-  arr2[4]= 1;
-  arr2[3]= 2;
-  arr2[1]= 3;
-
-
-  for(int i = 0;i< length;i++)
-  {
-
-    itemNumber=i;
-     switch(itemNumber)
+  
+  int* inventoryList = new int[9]{1,2,3,1,2,3,1,2,3};
+  menuOptions = listNr;
+  
+  // item 1
+  item item1;
+  item1.name = " sword ";
+  item1.type = " (weapon) \n";
+  
+  // item 2
+  item item2;
+  item2.name = " axe " ;
+  item2.type = " (weapon) \n";
+  
+  // item 3
+  item item3;
+  item3.name = " potato ";
+  item3.type = " (food) \n";
+  
+  do{
+    switch(menuOptions)
     {
       case 1:
-      cout<< item2.name<< + " \n";
-      cout<< item2.type<< + " \n";
+      // View inventory
+      for(int i = 0; i < length;i++)
+      {
+        
+        if(inventoryList[i]==1)
+        {
+          cout<< i << ". " << &inventoryList[i];
+          viewList(item1);         
+        }
+        if(inventoryList[i]==2)
+        {
+          cout<< i << ". " << &inventoryList[i];
+          viewList(item2);         
+        }
+        if(inventoryList[i]==3)
+        {
+          cout<< i << ". " << &inventoryList[i];
+          viewList(item3);         
+        }  
+        count ++;
+      }
+      
       break;
       case 2:
-      cout<< item1.name<< + " \n";
-      cout<< item1.type<< + " \n";
+      // Add item
+      
       break;
       case 3:
-      cout<< item3.name<< + " \n";
-      cout<< item3.type<< + " \n";
+      // Delete item
+      
+      break;
+      case 4:
+      // stop menu
+      menuOptions = false;
       break;
     }
-
-  }
-
- 
-
+  } while(menuOptions !=4 && count < length);    
   
-
-  
-
+  delete[] inventoryList;
   return 0;
 }
